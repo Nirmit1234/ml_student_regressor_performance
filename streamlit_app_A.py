@@ -1,9 +1,9 @@
 import streamlit as st
 import numpy as np
-import pickle
+import dill  
 
 with open("student_performance_model.pkl", "rb") as f:
-    model = pickle.load(f)
+    model = dill.load(f)
 
 st.title("Student Performance Prediction")
 
