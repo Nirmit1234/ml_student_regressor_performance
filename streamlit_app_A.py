@@ -1,8 +1,9 @@
 import streamlit as st
 import numpy as np
-import joblib
+import pickle
 
-model = joblib.load("student_performance_model.pkl")
+with open("student_performance_model.pkl", "rb") as f:
+    model = pickle.load(f)
 
 st.title("Student Performance Prediction")
 
@@ -53,6 +54,7 @@ input_features = np.array([
     exam_attempts,
     grade_dict[hssc_ii_grade]
 ]).reshape(1, -1)
+
 if st.button("Predict Performance"):
     prediction = model.predict(input_features)
     st.write(f"Predicted Performance Score: {prediction[0]:.2f}")
